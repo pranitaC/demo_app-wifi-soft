@@ -22,17 +22,57 @@ router.get('/new', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
-  var employee = new Employee(req.body.employee);
-  employee.save(function(err){
-    if(err){
-      res.render("employees/new");
-    }else{
-      res.render("employees/show",{
-        employee: employee
+	console.log(req.body.employee);
+	var employee = new Employee(req.body.employee);
+	employee.save(function(err){
+	if(err){
+		res.render("employees/new");
+	}else{
+		res.render("employees/show",{
+		employee: employee
+	});
+	}
+    });
+});
+
+router.get('/edit', function(req, res, next) {
+  res.render("employees/edit");
+});
+
+router.put("/:id", function(req, res, next) {
+  Employee.findById(req.params["id"], function(err, employee) {
+    if(err) {
+      res.redirect("/employees");
+    } else {
+      Employee.update({ _id: req.params["id"]}, req.body.employee, {multi: true}, function(err, raw){
+        if(err){
+          res.render("employees/edit",{ employee: employee });
+        }else{
+          res.redirect("/employees/"+employee._id);
+        }
+      });
+    }
+  })
+});
+
+router.delete('/:id', function(req, res, next) {
+  Employee.findOne({ _id: req.params['id'] }, function(err, employee) {
+    
+    if(err) {
+      res.redirect('/employees');
+    } else {
+      employee.remove(function(err, employee){
+        if (err) {
+          res.redirect('/employees');
+        } else {
+          res.redirect('/employees');
+        }
       });
     }
   });
 });
+
+module.exports = router;
 
 
 

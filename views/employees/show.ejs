@@ -1,0 +1,29 @@
+<html>
+<head>
+	<title>Demo App</title>
+</head>
+
+<body>
+	<div>
+	<h1>Showing Employee</h1>
+
+	<div>
+  		<label>Name: <%= employee.name %></label>
+	</div>
+	<div>
+  		<label>DOB: <%= employee.dob %></label>
+	</div>
+	<div>
+  		<label>Designation: <%= employee.designation %></label>
+	</div>
+	<div>
+  		<label>Salary: <%= employee.salary %></label>
+	</div>
+	<div>
+  		<label>Date Of joining: <%= employee.date_of_joining %></label>
+	</div>
+		<a href="/employees/<%= employee._id %>/edit">Edit</a>
+	</div>
+
+</body>
+</html>

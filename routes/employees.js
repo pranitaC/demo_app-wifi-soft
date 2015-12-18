@@ -21,4 +21,19 @@ router.get('/new', function(req, res, next) {
   res.render("employees/new");
 });
 
+router.post('/', function(req, res, next) {
+  var employee = new Employee(req.body.employee);
+  employee.save(function(err){
+    if(err){
+      res.render("employees/new");
+    }else{
+      res.render("employees/show",{
+        employee: employee
+      });
+    }
+  });
+});
+
+
+
 module.exports = router;

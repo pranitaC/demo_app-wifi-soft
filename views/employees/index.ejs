@@ -1,0 +1,30 @@
+<html>
+<head>
+	<title>Demo App</title>
+</head>
+
+<body>
+    <div>
+      <h2> Listing Employees </h2>
+      <table>
+        <tr>
+          <th>Name</th>
+          <th>DOB</th>
+	  <th>Designation</th>
+	  <th>Salary</th>
+	  <th>Date Of Joining</th>
+          <th>Action</th>
+        </tr>
+	<% for(var i = 0; i < employees.length; i++) { %>
+        <tr>
+          <td><%= employees[i].name %></td>
+          <td><%= employees[i].dob %></td>
+	  <td><%= employees[i].designation %></td>
+	  <td><%= employees[i].salary %></td>
+	  <td><%= employees[i].date_of_joining %></td>
+        </tr>
+        <% } %>
+      <a href="/employees/new">Add new Employee</a>
+    </div>    
+  </body>
+</html>
